@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shadow DOM Example</title>
+  </head>
+  <body>
+
+
+    <custom-button id="custom-button">Click me</custom-button>
+    <style>
+      button{
+        background-color: green;
+      }
+    </style>
+
+    <script>
+      const button = document.querySelector('custom-button');
+      const shadow = button.attachShadow({ mode: 'open' });
+      const style = document.createElement('style');
+      style.textContent = `
+        button {
+          background-color: #3498db;
+          color: white;
+          border: none;
+          padding: 10px 20px;
+          cursor: pointer;
+        }
+      `;
+      shadow.appendChild(style);
+      const buttonElem = document.createElement('button');
+      buttonElem.textContent = "Click me";
+      shadow.appendChild(buttonElem);
+    </script>
+    <script>
+      document.getElementById("custom-button").shadowRoot.querySelector("button").style.backgroundColor='green'
+    </script>
+  </body>
+</html>
